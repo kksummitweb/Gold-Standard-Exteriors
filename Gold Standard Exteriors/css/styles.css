@@ -142,7 +142,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: width 0.1s linear;
   border-radius: 0 2px 2px 0;
 }
-
 /* --- Preloader --- */
 .preloader {
   position: fixed;
@@ -815,8 +814,35 @@ h3 { font-size: 1.0625rem; font-weight: 700; letter-spacing: -0.02em; }
 .offer-content p  { color: var(--text-muted); margin-bottom: 2rem; font-size: 1.0625rem; }
 
 .offer-aside { display: flex; flex-direction: column; gap: 1.5rem; }
-.offer-img { border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 16/10; }
-.offer-img .image-container { min-height: 100%; }
+.image-holder {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+}
+.offer-img {
+  aspect-ratio: auto;
+  width: 100%;
+}
+.offer-img .image-container {
+  min-height: 0;
+  height: auto;
+  border-radius: inherit;
+  overflow: hidden;
+}
+.offer-img .image-container--offer {
+  height: auto;
+  min-height: 0;
+}
+.offer-img .image-3-zoom-out {
+  position: static;
+  inset: auto;
+  transform: none;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
 
 .offer-checks { display: flex; flex-direction: column; gap: 0.625rem; }
 .offer-checks li {
