@@ -206,11 +206,28 @@ if (heroBg && window.matchMedia('(min-width: 768px)').matches) {
 }
 
 /* ── Quote Form ─────────────────────────────────────────── */
+// Paste your deployed Google Apps Script URL here after setup:
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxll7L7Uz-8B4R3iO6DOgnscv30G0ubDXpg2BtM6bciTijr8EN2ZMiyL_EOlX_c12W7zw/exec';
+
 const quoteForm   = document.getElementById('quoteForm');
 const formSuccess = document.getElementById('formSuccess');
 
 if (quoteForm) {
-  quoteForm.addEventListener('submit', e => {
+
+  // Add error message element if not present
+  let formError = document.getElementById('formError');
+  if (!formError) {
+    formError = document.createElement('div');
+    formError.id = 'formError';
+    formError.className = 'form-error';
+    formError.style.display = 'none';
+    formError.style.color = '#b00020';
+    formError.style.margin = '1rem 0 0 0';
+    formError.style.fontWeight = '600';
+    quoteForm.appendChild(formError);
+  }
+
+  quoteForm.addEventListener('submit', async e => {
     e.preventDefault();
 
     // Basic validation
@@ -233,20 +250,55 @@ if (quoteForm) {
       return;
     }
 
-    // Success state
+    // Disable form while submitting
     quoteForm.style.opacity = '0.5';
     quoteForm.style.pointerEvents = 'none';
+    formError.style.display = 'none';
 
-    setTimeout(() => {
-      quoteForm.style.opacity = '';
-      quoteForm.style.pointerEvents = '';
-      quoteForm.reset();
+    // Build payload
+    const payload = new URLSearchParams({
+      name:    document.getElementById('fname').value.trim(),
+      email:   document.getElementById('femail').value.trim(),
+      phone:   document.getElementById('fphone').value.trim(),
+      business: '', // Not collected in form
+      details: document.getElementById('fmsg').value.trim(),
+      submittedAt: new Date().toISOString(),
+      sourcePage: window.location.href,
+    });
+
+    // Debug: log payload
+    console.log('[QuoteForm] Sending payload:', payload.toString());
+
+    let sent = false;
+    try {
+      const resp = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode:   'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: payload.toString(),
+      });
+      // Debug: log fetch result
+      console.log('[QuoteForm] Fetch result:', resp);
+      sent = true; // With no-cors, we can't check status, so assume success if no error
+    } catch (err) {
+      console.error('[QuoteForm] Fetch error:', err);
+      sent = false;
+    }
+
+    // Show result
+    quoteForm.style.opacity = '';
+    quoteForm.style.pointerEvents = '';
+    quoteForm.reset();
+    if (sent) {
       if (formSuccess) {
         formSuccess.hidden = false;
         formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         setTimeout(() => { formSuccess.hidden = true; }, 6000);
       }
-    }, 800);
+    } else {
+      formError.textContent = 'Sorry, there was a problem sending your request. Please try again or call us.';
+      formError.style.display = 'block';
+    }
   });
 
   // Remove error class on input
