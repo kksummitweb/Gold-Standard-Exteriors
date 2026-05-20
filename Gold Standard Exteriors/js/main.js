@@ -45,11 +45,7 @@
     const y = window.scrollY;
     if (header) {
       header.classList.toggle("scrolled", y > 24);
-      if (y > 120) {
-        header.classList.toggle("header-hidden", y > lastScrollY && y > 200);
-      } else {
-        header.classList.remove("header-hidden");
-      }
+      header.classList.remove("header-hidden");
     }
     lastScrollY = y;
     updateActiveNav();
