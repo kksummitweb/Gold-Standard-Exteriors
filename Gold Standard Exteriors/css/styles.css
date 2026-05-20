@@ -251,6 +251,19 @@ a:hover { color: var(--gold-600); }
   border: none;
 }
 
+.image-container img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+}
+
+.image-container:has(img)::before,
+.image-container:has(img)::after { content: none; }
+
 /* ─── Typography ─── */
 h1, h2, h3 {
   font-family: var(--font-display);
@@ -683,6 +696,7 @@ h1 .text-accent {
   bottom: 1rem;
   left: 1rem;
   right: 1rem;
+  z-index: 2;
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -1016,9 +1030,8 @@ h1 .text-accent {
 }
 
 .service-featured {
-  grid-column: span 2;
-  grid-row: span 2;
-  min-height: 380px;
+  grid-column: 1 / -1;
+  min-height: 420px;
   padding: 0;
   display: flex;
   align-items: flex-end;
@@ -1027,6 +1040,7 @@ h1 .text-accent {
 .service-card-bg {
   position: absolute;
   inset: 0;
+  z-index: 0;
 }
 .service-card-bg .image-container {
   border-radius: 0;
@@ -1037,17 +1051,16 @@ h1 .text-accent {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(7, 24, 16, 0.92) 0%, rgba(7, 24, 16, 0.45) 55%, transparent 100%);
+  background: linear-gradient(to top, rgba(7, 24, 16, 0.97) 0%, rgba(7, 24, 16, 0.7) 45%, rgba(7, 24, 16, 0.2) 75%, transparent 100%);
   z-index: 1;
   pointer-events: none;
 }
-.service-card-content { z-index: 2; }
-
 .service-card-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   padding: 2rem;
   color: var(--white);
+  text-shadow: 0 1px 4px rgba(7, 24, 16, 0.6);
 }
 .service-card-content h3 { color: var(--white); font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; margin-bottom: 0.75rem; }
 .service-card-content p { color: rgba(255,255,255,0.8); margin-bottom: 1.25rem; font-size: 0.9375rem; }
@@ -1058,7 +1071,7 @@ h1 .text-accent {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--green-950);
+  color: var(--white);
   background: var(--gold-400);
   padding: 0.3rem 0.75rem;
   border-radius: var(--radius-full);
@@ -1066,7 +1079,7 @@ h1 .text-accent {
 }
 
 .service-link {
-  color: var(--gold-300);
+  color: var(--white);
   font-weight: 600;
   font-size: 0.9375rem;
   display: inline-flex;
@@ -1074,7 +1087,7 @@ h1 .text-accent {
   gap: 0.25rem;
   transition: gap var(--transition);
 }
-.service-link:hover { color: var(--gold-200); gap: 0.5rem; }
+.service-link:hover { color: rgba(255,255,255,0.8); gap: 0.5rem; }
 
 .service-card .card-icon {
   width: 3rem;
