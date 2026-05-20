@@ -517,9 +517,9 @@ h3 { font-size: 1.0625rem; font-weight: 700; letter-spacing: -0.02em; }
   transition: color var(--t), background var(--t);
 }
 .nav-list a:hover  { color: var(--green-700); background: var(--green-50); }
-.nav-list a.active { color: var(--green-800); background: var(--gold-100); font-weight: 600; }
+.nav-list a.active { color: var(--gold-600); background: var(--gold-100); font-weight: 600; }
 [data-theme="dark"] .nav-list a:hover  { background: rgba(255,255,255,0.06); }
-[data-theme="dark"] .nav-list a.active { background: rgba(212,175,55,0.12); }
+[data-theme="dark"] .nav-list a.active { color: var(--gold-400); background: rgba(212,175,55,0.12); }
 
 .header-actions { display: flex; align-items: center; gap: 0.625rem; flex-shrink: 0; }
 
