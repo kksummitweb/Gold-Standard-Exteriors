@@ -99,16 +99,8 @@
   --gold-100:       #1a1608;
 }
 
-[data-theme="dark"] .svc-card,
-[data-theme="dark"] .offer-card,
-[data-theme="dark"] .section {
-  background: var(--surface-raised);
+[data-theme="dark"] .svc-card {
   box-shadow: 0 4px 32px rgba(0,0,0,0.22);
-}
-
-[data-theme="dark"] .svc-body,
-[data-theme="dark"] .offer-content {
-  background: linear-gradient(180deg, rgba(20,40,28,0.92) 0%, #18241c 100%);
 }
 
 [data-theme="dark"] .btn-gold,
@@ -123,17 +115,14 @@
 
 [data-theme="dark"] .hero-badge,
 [data-theme="dark"] .section-label {
-  background: rgba(212,175,55,0.08);
   color: var(--gold-400);
 }
 
 [data-theme="dark"] .offer-tag {
-  background: rgba(212,175,55,0.13);
   color: var(--gold-300);
 }
 
 [data-theme="dark"] .svc-tag {
-  background: rgba(212,175,55,0.13);
   color: var(--gold-300);
 }
 
@@ -431,6 +420,21 @@ h3 { font-size: 1.0625rem; font-weight: 700; letter-spacing: -0.02em; }
 @keyframes shimmer {
   0%   { background-position: 100% 50%; }
   100% { background-position: -100% 50%; }
+}
+
+[data-theme="dark"] .shimmer-text {
+  background: var(--gold-400);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: none;
+}
+[data-theme="dark"] .shimmer-text-green {
+  background: var(--green-400);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: none;
 }
 
 /* --- Image container --- */
