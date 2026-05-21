@@ -207,7 +207,7 @@ if (heroBg && window.matchMedia('(min-width: 768px)').matches) {
 
 /* ── Quote Form ─────────────────────────────────────────── */
 // Paste your deployed Google Apps Script URL here after setup:
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzz98LrS5VlqtUtp6vPU8ceFq1HGlQ_bA7QmpZhEO5MlF6-whih3ND9rps-OL6snTLpAg/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyzkymvXT71dyNC3UBf6exNwKa7kl6n-6iUiAFii9y2-81ch7eKqr_VepC5Ll4eV__giQ/exec';
 
 const quoteForm   = document.getElementById('quoteForm');
 const formSuccess = document.getElementById('formSuccess');
