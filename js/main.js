@@ -207,7 +207,7 @@ if (heroBg && window.matchMedia('(min-width: 768px)').matches) {
 
 /* ── Quote Form ─────────────────────────────────────────── */
 // Paste your deployed Google Apps Script URL here after setup:
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxll7L7Uz-8B4R3iO6DOgnscv30G0ubDXpg2BtM6bciTijr8EN2ZMiyL_EOlX_c12W7zw/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzz98LrS5VlqtUtp6vPU8ceFq1HGlQ_bA7QmpZhEO5MlF6-whih3ND9rps-OL6snTLpAg/exec';
 
 const quoteForm   = document.getElementById('quoteForm');
 const formSuccess = document.getElementById('formSuccess');
@@ -260,6 +260,8 @@ if (quoteForm) {
       name:    document.getElementById('fname').value.trim(),
       email:   document.getElementById('femail').value.trim(),
       phone:   document.getElementById('fphone').value.trim(),
+      city: document.getElementById('fcity')?.value.trim() || '',
+      location: document.getElementById('fcity')?.value.trim() || '',
       business: '', // Not collected in form
       details: document.getElementById('fmsg').value.trim(),
       submittedAt: new Date().toISOString(),
